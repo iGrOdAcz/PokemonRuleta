@@ -1,0 +1,33 @@
+<div class="wheel-container">
+    <p>{{ currentSegment | translate }}</p>
+
+    <!-- manual selection controls -->
+    <div *ngIf="allowManualSelection" class="manual-choice mb-2">
+      <small>{{ 'wheel.choose' | translate }}</small>
+      <div class="btn-group" role="group">
+        <button *ngFor="let item of items; let i = index"
+                class="btn btn-sm btn-outline-primary"
+                (click)="chooseItem(i)">
+          {{ item.text | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="wheel"
+                [width]="wheelWidth"
+                [height]="canvasHeight"
+                (click)="spinWheel()">
+        </canvas>
+        <canvas id="pointer"
+                [width]="cursorWidth"
+                [height]="canvasHeight">
+        </canvas>
+    </div>
+    <button class="btn my-3"
+            [ngClass]="(darkMode | async) ? 'btn-light' : 'btn-dark'"
+            (click)="spinWheel()">
+            {{ 'wheel.spin' | translate }}
+    </button>
+</div>
+

@@ -1,0 +1,35 @@
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #ffcb05, #3b4cca, #ffcb05);
+  background-size: 200% 200%;
+  color: #000;
+  border: 2px solid #3b4cca;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  animation: pulse 2.5s infinite, gradientShift 5s ease infinite;
+}
+.admin-link ng-icon {
+  font-size: 1.2rem;
+}
+.admin-link:hover {
+  filter: brightness(1.15);
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

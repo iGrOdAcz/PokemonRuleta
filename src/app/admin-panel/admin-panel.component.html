@@ -1,0 +1,77 @@
+<div class="admin-panel">
+  <h2>{{ 'admin.title' | translate }}</h2>
+  <button class="btn btn-secondary mb-3" (click)="logout()">{{ 'admin.logout' | translate }}</button>
+
+  <section class="section-card">
+    <h3>{{ 'admin.addPokemon' | translate }}</h3>
+    <div class="row g-2 align-items-end">
+      <div class="col">
+        <select class="form-select" [(ngModel)]="selectedPokemonForAdd" (change)="onPokemonForAddChange()">
+          <option [ngValue]="undefined">--</option>
+          <option *ngFor="let p of allPokemons" [ngValue]="p">{{p.text}} (ID:{{p.pokemonId}})</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" (click)="addPokemonFromDropdown()">{{ 'admin.addPokemon' | translate }}</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card mt-4">
+    <h3>{{ 'admin.editPokemon' | translate }}</h3>
+    <div class="mb-2">
+      <select class="form-select" [(ngModel)]="selectedExistingPokemon" (change)="onExistingPokemonSelect()">
+        <option [ngValue]="undefined">--</option>
+        <option *ngFor="let p of team.concat(stored)" [ngValue]="p">{{p.text}} (ID:{{p.pokemonId}})</option>
+      </select>
+    </div>
+    <div *ngIf="selectedExistingPokemon" class="d-flex gap-2 mb-2">
+      <button class="btn btn-secondary" (click)="makeShiny()">{{ 'admin.makeShiny' | translate }}</button>
+      <button class="btn btn-secondary" (click)="prepareEvolution()">{{ 'admin.evolve' | translate }}</button>
+    </div>
+    <div *ngIf="evolutionOptions.length" class="mb-2">
+      <select class="form-select w-auto d-inline" [(ngModel)]="selectedEvolution">
+        <option [ngValue]="undefined">--</option>
+        <option *ngFor="let e of evolutionOptions" [ngValue]="e">{{e.text}}</option>
+      </select>
+      <button class="btn btn-primary" (click)="evolvePokemon()">{{ 'admin.confirmEvolve' | translate }}</button>
+    </div>
+  </section>
+  <section class="section-card mt-4">
+    <h3>{{ 'trainer.storage.team' | translate }}</h3>
+    <ul class="list-group">
+      <li *ngFor="let p of team" class="list-group-item d-flex gap-2 align-items-center">
+        <input [(ngModel)]="p.text" (blur)="updateTeam()" class="form-control w-auto" />
+        <input type="number" [(ngModel)]="p.pokemonId" (blur)="updateTeam()" class="form-control w-auto" style="max-width:80px"/>
+        <button class="btn btn-danger btn-sm" (click)="removeFromTeam(p)">{{ 'admin.remove' | translate }}</button>
+      </li>
+    </ul>
+  </section>
+  <section class="section-card mt-4">
+    <h3>{{ 'trainer.storage.stored' | translate }}</h3>
+    <ul class="list-group">
+      <li *ngFor="let p of stored" class="list-group-item d-flex gap-2 align-items-center">
+        <input [(ngModel)]="p.text" (blur)="updateTeam()" class="form-control w-auto" />
+        <input type="number" [(ngModel)]="p.pokemonId" (blur)="updateTeam()" class="form-control w-auto" style="max-width:80px"/>
+        <button class="btn btn-danger btn-sm" (click)="removeFromTeam(p)">{{ 'admin.remove' | translate }}</button>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section-card mt-4">
+    <h3>{{ 'items.title' | translate }}</h3>
+    <ul class="list-group">
+      <li *ngFor="let item of items" class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ item.name }}</span>
+        <button class="btn btn-danger btn-sm" (click)="removeItem(item)">{{ 'admin.remove' | translate }}</button>
+      </li>
+    </ul>
+    <div class="input-group mt-2">
+      <select class="form-select" [(ngModel)]="selectedItemToAdd">
+        <option [ngValue]="undefined">--</option>
+        <option *ngFor="let it of allItemsOptions" [ngValue]="it">{{it.name}}</option>
+      </select>
+      <button class="btn btn-primary" (click)="addItemFromDropdown()">{{ 'admin.addItem' | translate }}</button>
+    </div>
+  </section>
+</div>
