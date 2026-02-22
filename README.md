@@ -3,7 +3,7 @@ A game involving Pokémon and Roulettes
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
 
-And you may play it here: [https://zeroxm.github.io/pokemon-roulette/](https://zeroxm.github.io/pokemon-roulette/)
+And you may play it here: [GAME](https://igrodacz.github.io/PokemonRuleta/)
 
 ## Development server
 
@@ -16,7 +16,6 @@ ng serve
 ### Additional notes
 
 * A Czech (`cs`) translation has been added. You can change the language using the language selector in the settings.
-* An administrative interface is available under the **/login** route. Credentials are `igroda` / `1310`.  After logging in you can add or remove items, and edit the Pokémon in your team or storage.
 
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
